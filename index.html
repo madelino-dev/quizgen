@@ -43,11 +43,7 @@
                 },
                 {
                     question: `ABC Software is considering starting a new division making phone apps. It forecasts that the free cash flows for this division in 5 years will be ${formatMoney(215000 * multiplier)}. What is the terminal value as of year 5 for the division with a 3% perpetual growth rate and a 12% discount rate?`,
-                    answer: () => {
-                        const year6CashFlow = (215000 * multiplier * 1.03);
-                        const terminalValue = year6CashFlow / (0.12 - 0.03);
-                        return `The terminal value (TV) as of year 5 is calculated using TV = (Year 6 cash flow) / (discount rate - growth rate). Year 6 cash flow = ${formatMoney(215000 * multiplier)} × 1.03 = ${formatMoney(year6CashFlow)}. TV = ${formatMoney(year6CashFlow)} / (0.12 - 0.03) = ${formatMoney(terminalValue)}.`;
-                    }
+                    textInput: true
                 },
                 {
                     question: "Errors in the discount rate can be problematic because:",
@@ -97,24 +93,15 @@
                 },
                 {
                       question: `Estimate the asset beta for XYZ, given comparable firms have a beta of ${[1.1, 1.2, 1.3, 0.9, 0.8][multiplier-1]} and a 20% market leverage (D/V). Assume the beta of debt is 0. Show your work.`,
-                    alternatives: shuffleArray([
-                        "Show your work",
-                        "Show your work",
-                    ])
+                      textInput: true
                     },
                     {
                       question: `Estimate XYZ's cost of equity if the risk-free rate is 4%, market risk premium is 5%, and market leverage is 40% (D/V). Show your work.`,
-                    alternatives: shuffleArray([
-                        "Show your work",
-                        "Show your work",
-                    ])
+                      textInput: true
                     },
                     {
                       question: `Estimate XYZ's weighted average cost of capital (WACC) if its cost of debt is ${[6, 6.5, 7, 5.5, 5][multiplier-1]}% and the tax rate is 40%. Show your work.`,
-                    alternatives: shuffleArray([
-                        "Show your work",
-                        "Show your work",
-                    ])
+                      textInput: true
                     }
 
             ];
@@ -148,6 +135,12 @@
                                             </label>
                                         ))}
                                     </div>
+                                ) : q.textInput ? (
+                                    <textarea 
+                                        className="w-full p-3 bg-gray-50 rounded border border-gray-300"
+                                        rows="3"
+                                        placeholder="Enter your answer here..."
+                                    />
                                 ) : (
                                     <div className="p-3 bg-gray-50 rounded">
                                         {q.answer()}
