@@ -34,7 +34,7 @@
 
             const allQuestions  = [
                 {
-                    question: `You have a firm that starts out with ${formatMoney(65000 * multiplier)} in cash. You have three investment opportunities. The discount rate is 18%. Which investments, if any, do you undertake?`,
+                    question: `You have a firm that starts out with ${formatMoney(65000 * multiplier)} in cash. You have three investment opportunities. The discount rate is 18%. Which investments, if any, do you undertake? Choose all that apply.`,
                     alternatives: shuffleArray([
                         `Invest ${formatMoney(40000 * multiplier)} today for a payoff of ${formatMoney(49000 * multiplier)} next year`,
                         `Invest ${formatMoney(23000 * multiplier)} today for a payoff of ${formatMoney(30000 * multiplier)} in two years`,
@@ -46,7 +46,7 @@
                     textInput: true
                 },
                 {
-                    question: "Errors in the discount rate can be problematic because:",
+                    question: "Errors in the discount rate can be problematic because: (Choose all that apply.)",
                     alternatives: shuffleArray([
                         "This can lead to mistaken investment decisions.",
                         "This can lead to erroneous decisions to repurchase shares.",
@@ -73,7 +73,7 @@
                     ])
                 },
                 {
-                    question: "It is common to use comparable firms' information as inputs for:",
+                    question: "It is common to use comparable firms' information as inputs for: (Choose all that apply.)",
                     alternatives: shuffleArray([
                         "A firm's capital structure.",
                         "The unlevered cost of equity.",
@@ -82,7 +82,7 @@
                     ])
                 },
                 {
-                    question: "What advice would you give to someone who was just starting to use modern valuation tools?",
+                    question: "What advice would you give to someone who was just starting to use modern valuation tools? Choose all that apply.",
                     alternatives: shuffleArray([
                         "The terminal value (and our assumptions about long-term growth rate) can have a very large impact on your calculation of the value of a firm.",
                         "Ultimately, the value of a firm is negotiated between multiple parties, and discounted cash flows are only a tool that informs the negotiation.",
