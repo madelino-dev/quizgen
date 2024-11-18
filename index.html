@@ -102,6 +102,10 @@
                     {
                       question: `Estimate XYZ's weighted average cost of capital (WACC) if its cost of debt is ${[6, 6.5, 7, 5.5, 5][multiplier-1]}% and the tax rate is 40%. Show your work.`,
                       textInput: true
+                    },
+                    {
+                      question: "Please enter your name:",
+                      textInput: true
                     }
 
             ];
@@ -109,11 +113,13 @@
             const blockA = allQuestions.slice(0, 2);  // First two questions
             const blockB = allQuestions.slice(2, 5);  // Questions 3-5
             const blockC = allQuestions.slice(5, 7);  // Questions 6-7
-            const blockD = allQuestions.slice(7);     // Last three questions
+            const blockD = allQuestions.slice(7, 10);     // Last three questions
+            const blockE = allQuestions.slice(10);     // Name
 
             const middleBlocks = shuffleArray([blockA, blockB, blockC]);
 
             const questions = [
+                ...blockE,
                 ...middleBlocks.flat(),
                 ...blockD
             ];
