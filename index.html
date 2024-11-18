@@ -32,7 +32,7 @@
                 }));
             };
 
-            const questions = [
+            const allQuestions  = [
                 {
                     question: `You have a firm that starts out with ${formatMoney(65000 * multiplier)} in cash. You have three investment opportunities. The discount rate is 18%. Which investments, if any, do you undertake?`,
                     alternatives: shuffleArray([
@@ -105,7 +105,19 @@
                     }
 
             ];
+           
+            const blockA = allQuestions.slice(0, 2);  // First two questions
+            const blockB = allQuestions.slice(2, 5);  // Questions 3-5
+            const blockC = allQuestions.slice(5, 7);  // Questions 6-7
+            const blockD = allQuestions.slice(7);     // Last three questions
 
+            const middleBlocks = shuffleArray([blockA, blockB, blockC]);
+
+            const questions = [
+                ...middleBlocks.flat(),
+                ...blockD
+            ];
+            
             const regenerateQuiz = React.useCallback(() => {
                 setMultiplier(getRandomMultiplier());
                 setSelectedAnswers({});
