@@ -124,6 +124,34 @@
                 ...middleBlocks.flat(),
                 ...blockD
             ];
+
+                // Function to get index ranges for each block
+                const getBlockIndices = () => {
+                let blockELength = blockE.length;
+                let currentMiddleBlock = 0;
+                const indices = {
+                    blockE: [0, blockELength - 1],
+                    blockA: middleBlocks[0] === blockA ? [blockELength, blockELength + blockA.length - 1] : null,
+                    blockB: middleBlocks[0] === blockB ? [blockELength, blockELength + blockB.length - 1] : null,
+                    blockC: middleBlocks[0] === blockC ? [blockELength, blockELength + blockC.length - 1] : null,
+                };
+                
+                currentMiddleBlock = blockELength + middleBlocks[0].length;
+                if (!indices.blockA) indices.blockA = middleBlocks[1] === blockA ? [currentMiddleBlock, currentMiddleBlock + blockA.length - 1] : null;
+                if (!indices.blockB) indices.blockB = middleBlocks[1] === blockB ? [currentMiddleBlock, currentMiddleBlock + blockB.length - 1] : null;
+                if (!indices.blockC) indices.blockC = middleBlocks[1] === blockC ? [currentMiddleBlock, currentMiddleBlock + blockC.length - 1] : null;
+                
+                currentMiddleBlock += middleBlocks[1].length;
+                if (!indices.blockA) indices.blockA = [currentMiddleBlock, currentMiddleBlock + blockA.length - 1];
+                if (!indices.blockB) indices.blockB = [currentMiddleBlock, currentMiddleBlock + blockB.length - 1];
+                if (!indices.blockC) indices.blockC = [currentMiddleBlock, currentMiddleBlock + blockC.length - 1];
+                
+                indices.blockD = [questions.length - blockD.length, questions.length - 1];
+                
+                return indices;
+                };
+        
+            const blockIndices = getBlockIndices();
             
             const regenerateQuiz = React.useCallback(() => {
                 setMultiplier(getRandomMultiplier());
@@ -132,12 +160,38 @@
 
             return (
                 <div className="max-w-3xl mx-auto p-5 bg-gray-50">
+                    <style>
+                        {`
+                        @media print {
+                            .page-break {
+                                page-break-before: always;
+                            }
+                            .no-break {
+                                page-break-inside: avoid;
+                            }
+                            @page {
+                                margin: 2cm;
+                            }
+                        }
+                        `}
+                    </style>
+                    
                     <h1 className="text-4xl font-bold text-center mb-8">
                         Test Version: {multiplier}
                     </h1>
                     <div className="space-y-5">
-                        {questions.map((q, questionIndex) => (
-                            <div key={questionIndex} className="bg-white rounded-lg p-5 shadow">
+                        
+                {questions.map((q, questionIndex) => {
+                    const isBlockStart = 
+                        questionIndex === blockIndices.blockE[0] ||
+                        questionIndex === blockIndices.blockA[0] ||
+                        questionIndex === blockIndices.blockB[0] ||
+                        questionIndex === blockIndices.blockC[0] ||
+                        questionIndex === blockIndices.blockD[0];
+
+                    return (
+                        <div key={questionIndex} className={`${isBlockStart ? 'page-break' : ''} no-break bg-white rounded-lg p-5 shadow`}>
+                            
                                 <h3 className="font-semibold mb-3">Question {questionIndex + 1}</h3>
                                 <p className="mb-4">{q.question}</p>
                                 {q.alternatives ? (
@@ -157,8 +211,8 @@
                                 ) : q.textInput ? (
                                     <textarea 
                                         className="w-full p-3 bg-gray-50 rounded border border-gray-300"
-                                        rows="3"
-                                        placeholder="Enter your answer here..."
+                                        rows="5"
+                                        placeholder=""
                                     />
                                 ) : (
                                     <div className="p-3 bg-gray-50 rounded">
