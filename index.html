@@ -181,17 +181,16 @@
                     </h1>
                     <div className="space-y-5">
                         
-                {questions.map((q, questionIndex) => {
-                    const isBlockStart = 
-                        questionIndex === blockIndices.blockE[0] ||
-                        questionIndex === blockIndices.blockA[0] ||
-                        questionIndex === blockIndices.blockB[0] ||
-                        questionIndex === blockIndices.blockC[0] ||
-                        questionIndex === blockIndices.blockD[0];
-
-                    return (
-                        <div key={questionIndex} className={`${isBlockStart ? 'page-break' : ''} no-break bg-white rounded-lg p-5 shadow`}>
-                            
+                    {questions.map((q, questionIndex) => {
+                        const isBlockStart = 
+                            questionIndex === blockIndices.blockE[0] ||
+                            questionIndex === blockIndices.blockA[0] ||
+                            questionIndex === blockIndices.blockB[0] ||
+                            questionIndex === blockIndices.blockC[0] ||
+                            questionIndex === blockIndices.blockD[0];
+                    
+                        return (
+                            <div key={questionIndex} className={`${isBlockStart ? 'page-break' : ''} no-break bg-white rounded-lg p-5 shadow`}>
                                 <h3 className="font-semibold mb-3">Question {questionIndex + 1}</h3>
                                 <p className="mb-4">{q.question}</p>
                                 {q.alternatives ? (
@@ -220,14 +219,15 @@
                                     </div>
                                 )}
                             </div>
-                        ))}
-                    </div>
-                    <button
-                        onClick={regenerateQuiz}
-                        className="mt-5 px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                    >
-                        Generate New Numbers
-                    </button>
+                        );
+                    })}
+                </div>
+                <button
+                    onClick={regenerateQuiz}
+                    className="mt-5 px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                >
+                    Generate New Numbers
+                </button>
                 </div>
             );
         };
