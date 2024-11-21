@@ -34,15 +34,15 @@
 
             const allQuestions  = [
                 {
-                    question: `You have a firm that starts out with ${formatMoney(65000 * multiplier)} in cash. You have three investment opportunities. The discount rate is 18%. Which investments, if any, do you undertake? Choose all that apply.\n У вас есть фирма, которая начинает с ${formatMoney(65000 * multiplier)} наличными. У вас есть три возможности для инвестиций. Ставка дисконтирования составляет 18%. Какие инвестиции, если таковые имеются, вы предпримете? Выберите все подходящие варианты.`,
+                    question: `You have a firm that starts out with ${formatMoney(65000 * multiplier)} in cash. You have three investment opportunities. The discount rate is 18%. Which investments, if any, do you undertake? Choose all that apply.\n\n У вас есть фирма, которая начинает с ${formatMoney(65000 * multiplier)} наличными. У вас есть три возможности для инвестиций. Ставка дисконтирования составляет 18%. Какие инвестиции, если таковые имеются, вы предпримете? Выберите все подходящие варианты.`,
                     alternatives: shuffleArray([
-                        `Invest ${formatMoney(40000 * multiplier)} today for a payoff of ${formatMoney(49000 * multiplier)} next year. <br> Инвестируйте ${formatMoney(40000 * multiplier)} сегодня и получите выплату ${formatMoney(49000 * multiplier)} в следующем году.`,
-                        `Invest ${formatMoney(23000 * multiplier)} today for a payoff of ${formatMoney(30000 * multiplier)} in two years. <br> Инвестируйте ${formatMoney(23000 * multiplier)} сегодня и получите выплату ${formatMoney(30000 * multiplier)} через два года.`,
-                        `Invest ${formatMoney(12000 * multiplier)} today for a payoff of ${formatMoney(2000 * multiplier)} every year, forever. <br> Инвестируйте ${formatMoney(12000 * multiplier)} сегодня и получите выплату ${formatMoney(2000 * multiplier)} каждый год пожизненно.`
+                        `Invest ${formatMoney(40000 * multiplier)} today for a payoff of ${formatMoney(49000 * multiplier)} next year.\nИнвестируйте ${formatMoney(40000 * multiplier)} сегодня и получите выплату ${formatMoney(49000 * multiplier)} в следующем году.`,
+                        `Invest ${formatMoney(23000 * multiplier)} today for a payoff of ${formatMoney(30000 * multiplier)} in two years.\nИнвестируйте ${formatMoney(23000 * multiplier)} сегодня и получите выплату ${formatMoney(30000 * multiplier)} через два года.`,
+                        `Invest ${formatMoney(12000 * multiplier)} today for a payoff of ${formatMoney(2000 * multiplier)} every year, forever.\nИнвестируйте ${formatMoney(12000 * multiplier)} сегодня и получите выплату ${formatMoney(2000 * multiplier)} каждый год пожизненно.`
                     ])
                 },
                 {
-                    question: `ABC Software is considering starting a new division making phone apps. It forecasts that the free cash flows for this division in 5 years will be ${formatMoney(215000 * multiplier)}. What is the terminal value as of year 5 for the division with a 3% perpetual growth rate and a 12% discount rate? <br> ABC Software рассматривает возможность создания нового подразделения по созданию приложений для телефонов. Прогнозируется, что свободные денежные потоки для этого подразделения через 5 лет составят ${formatMoney(215000 * multiplier)}. Какова ликвидационная стоимость на 5-й год для подразделения с перпетуитетным темпом роста 3% и ставкой дисконтирования 12%?`,
+                    question: `ABC Software is considering starting a new division making phone apps. It forecasts that the free cash flows for this division in 5 years will be ${formatMoney(215000 * multiplier)}. What is the terminal value as of year 5 for the division with a 3% perpetual growth rate and a 12% discount rate?\n\nABC Software рассматривает возможность создания нового подразделения по созданию приложений для телефонов. Прогнозируется, что свободные денежные потоки для этого подразделения через 5 лет составят ${formatMoney(215000 * multiplier)}. Какова ликвидационная стоимость на 5-й год для подразделения с перпетуитетным темпом роста 3% и ставкой дисконтирования 12%?`,
                     textInput: true
                 },
                 {
@@ -194,7 +194,7 @@
                                 <h3 className="font-semibold mb-3">Question || Вопрос {questionIndex + 1}</h3>
                                 <p className="mb-4" style={{ whiteSpace: 'pre-line' }}>{q.question}</p>
                                 {q.alternatives ? (
-                                    <div className="space-y-2">
+                                    <div className="space-y-2" style={{ whiteSpace: 'pre-line' }}>
                                         {(typeof q.alternatives === 'function' ? q.alternatives() : q.alternatives).map((alt, optionIndex) => (
                                             <label key={optionIndex} className="flex items-start p-3 bg-gray-50 rounded cursor-pointer hover:bg-gray-100">
                                                 <input
@@ -202,6 +202,7 @@
                                                     className="mt-1 mr-3"
                                                     checked={selectedAnswers[questionIndex] === optionIndex}
                                                     onChange={() => handleOptionSelect(questionIndex, optionIndex)}
+                                                    style={{ whiteSpace: 'pre-line' }}
                                                 />
                                                 <span>{alt}</span>
                                             </label>
