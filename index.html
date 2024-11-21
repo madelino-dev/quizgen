@@ -194,7 +194,7 @@
                                 <h3 className="font-semibold mb-3">Question || Вопрос {questionIndex + 1}</h3>
                                 <p className="mb-4" style={{ whiteSpace: 'pre-line' }}>{q.question}</p>
                                 {q.alternatives ? (
-                                    <div className="space-y-2" style={{ whiteSpace: 'pre-line' }}>
+                                    <div className="space-y-1" style={{ whiteSpace: 'pre-line' }}>
                                         {(typeof q.alternatives === 'function' ? q.alternatives() : q.alternatives).map((alt, optionIndex) => (
                                             <label key={optionIndex} className="flex items-start p-3 bg-gray-50 rounded cursor-pointer hover:bg-gray-100">
                                                 <input
